@@ -15,8 +15,10 @@ __metaclass__ = PoolMeta
 __all__ = ['ProductionReport']
 
 
-class ProductionReport(ReportWebkit):
-    __name__ = 'production.report'
+class ReportMixin(ReportWebkit):
+    """
+    Mixin Class to inherit from, for all HTML reports.
+    """
 
     @classmethod
     def wkhtml_to_pdf(cls, data, options=None):
@@ -42,3 +44,7 @@ class ProductionReport(ReportWebkit):
         return super(ProductionReport, cls).wkhtml_to_pdf(
             data, options=options
         )
+
+
+class ProductionReport(ReportMixin):
+    __name__ = 'production.report'
